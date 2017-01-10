@@ -2,9 +2,6 @@ package gruppe2.demo.win;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,7 +13,6 @@ import android.view.MenuItem;
 
 import gruppe2.demo.win.Fragments.GmapFragment;
 import gruppe2.demo.win.Fragments.ImportFragment;
-import gruppe2.demo.win.Fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -70,18 +66,10 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
+        if (id == R.id.infos_hhn) {
             fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.navi_hhn) {
             fm.beginTransaction().replace(R.id.content_frame, new GmapFragment()).commit();
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
