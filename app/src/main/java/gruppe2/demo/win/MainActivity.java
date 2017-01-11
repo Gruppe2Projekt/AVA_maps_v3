@@ -11,14 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
-import gruppe2.demo.win.Fragments.GmapFragment;
-import gruppe2.demo.win.Fragments.ImportFragment;
+import gruppe2.demo.win.Fragments.navi_hhn;
+import gruppe2.demo.win.Fragments.infos_hhn;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity
     //Variablen, zur Anzeige der Daten (nicht unbedingt relevant)
     TextView l;
     TextView b;
+
+
+
 
 
     @Override
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame, new GmapFragment()).commit();
+        fm.beginTransaction().replace(R.id.content_frame, new navi_hhn()).commit();
 
     }
 
@@ -128,9 +132,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.infos_hhn) {
-            fm.beginTransaction().replace(R.id.content_frame, new ImportFragment()).commit();
+            fm.beginTransaction().replace(R.id.content_frame, new infos_hhn()).commit();
         } else if (id == R.id.navi_hhn) {
-            fm.beginTransaction().replace(R.id.content_frame, new GmapFragment()).commit();
+            fm.beginTransaction().replace(R.id.content_frame, new navi_hhn()).commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

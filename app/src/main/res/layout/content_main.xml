@@ -18,21 +18,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Längengrad: 0.0"
-        android:id="@+id/textLaengenGrad"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
+        android:text="Breitengrad: 0.0"
+        android:id="@+id/textBreitenGrad"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Breitengrad: 0.0"
-        android:id="@+id/textBreitenGrad"
-        android:layout_below="@+id/textLaengenGrad"
-        android:layout_alignParentLeft="true"
+        android:text="Längengrad: 0.0"
+        android:id="@+id/textLaengenGrad"
+        android:layout_above="@+id/textBreitenGrad"
         android:layout_alignParentStart="true" />
+
 
 
 </RelativeLayout>

@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import gruppe2.demo.win.R;
 
-public class GmapFragment extends Fragment implements OnMapReadyCallback {
+public class navi_hhn extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -45,7 +45,7 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
         //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 13));
         LatLng SONTHEIM = new LatLng(49.122102, 9.210772);
 
-        googleMap.addMarker(new MarkerOptions().title("HS Heilbronn").position(SONTHEIM);
+        googleMap.addMarker(new MarkerOptions().title("HS Heilbronn").position(SONTHEIM));
         mMap.setMyLocationEnabled(true);
     }
 }
