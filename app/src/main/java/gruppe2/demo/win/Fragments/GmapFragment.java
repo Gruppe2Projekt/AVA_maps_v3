@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import gruppe2.demo.win.R;
@@ -19,6 +20,7 @@ import gruppe2.demo.win.R;
 public class GmapFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
 
 
     @Nullable
@@ -38,11 +40,12 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng marker = new LatLng(49.122102, 9.210772);
+        //LatLng marker = new LatLng(49.122102, 9.210772);
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 13));
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 13));
+        LatLng SONTHEIM = new LatLng(49.122102, 9.210772);
 
-        googleMap.addMarker(new MarkerOptions().title("HS Heilbronn").position(marker));
-        // mMap.setMyLocationEnabled(true);
+        googleMap.addMarker(new MarkerOptions().title("HS Heilbronn").position(SONTHEIM);
+        mMap.setMyLocationEnabled(true);
     }
 }
