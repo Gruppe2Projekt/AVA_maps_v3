@@ -18,6 +18,8 @@ import gruppe2.demo.win.R;
 
 public class GmapFragment extends Fragment implements OnMapReadyCallback {
 
+    private GoogleMap mMap;
+
 
     @Nullable
     @Override
@@ -35,11 +37,12 @@ public class GmapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-        LatLng marker = new LatLng(-33.867, 151.206);
+        mMap = googleMap;
+        LatLng marker = new LatLng(49.122102, 9.210772);
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 13));
 
-        googleMap.addMarker(new MarkerOptions().title("Hello Google Maps!").position(marker));
+        googleMap.addMarker(new MarkerOptions().title("HS Heilbronn").position(marker));
+        // mMap.setMyLocationEnabled(true);
     }
 }
