@@ -23,16 +23,6 @@
         android:layout_below="@+id/imageView3"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="Liste der Standorte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView4"
-        android:textStyle="normal|bold"
-        android:textSize="24sp" />
-
     <Button
         android:text="Standort anzeigen"
         android:layout_width="wrap_content"
@@ -44,27 +34,28 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="75sp"
-        android:id="@+id/imageView3"
-        android:layout_below="@+id/berechnen1"
-        android:layout_alignEnd="@+id/imageView2"
-        android:layout_marginEnd="10dp"
-        android:layout_toEndOf="@+id/berechnen1" />
+        android:id="@+id/imageView"
+        android:src="@drawable/europaplatz"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/imageView2" />
 
     <ImageView
         android:layout_width="wrap_content"
+        android:layout_height="75sp"
         android:id="@+id/imageView2"
-        android:layout_below="@+id/textView4"
         android:layout_toEndOf="@+id/berechnen1"
-        android:layout_height="75sp" />
+        android:layout_below="@+id/textView4"
+        />
 
-    <TextView
-        android:text="Campus Sontheim"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView7"
-        android:layout_marginBottom="27dp"
-        android:layout_above="@+id/anzeigen1"
-        android:layout_alignStart="@+id/imageView3" />
+        android:layout_height="75sp"
+        android:id="@+id/imageView3"
+        android:layout_below="@+id/berechnen1"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/imageView2"
+        android:src="@drawable/campus_sontheim"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -72,15 +63,18 @@
         android:layout_below="@+id/anzeigen1"
         android:layout_alignParentStart="true"
         android:id="@+id/imageView4"
-        android:layout_toStartOf="@+id/textView5" />
+        android:layout_toStartOf="@+id/textView5"
+        android:src="@drawable/kuenzelsau"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="75sp"
-        android:layout_below="@+id/anzeigen1"
+        android:id="@+id/imageView5"
+        android:layout_below="@+id/button7"
         android:layout_alignParentStart="true"
-        android:id="@+id/imageView6"
-        android:layout_toStartOf="@+id/textView5" />
+        android:layout_toStartOf="@+id/button4"
+        android:src="@drawable/schwaebisch_hall"
+        android:layout_above="@+id/button11" />
 
     <Button
         android:text="Route berechnen"
@@ -90,14 +84,6 @@
         android:layout_alignBaseline="@+id/button7"
         android:layout_alignBottom="@+id/button7"
         android:layout_toEndOf="@+id/button7" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="75sp"
-        android:id="@+id/imageView5"
-        android:layout_below="@+id/button7"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/button4" />
 
     <TextView
         android:text="Campus Schwäbisch-Hall"
@@ -120,30 +106,6 @@
         android:text="Route berechnen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button4"
-        android:layout_below="@+id/textView5"
-        android:layout_toEndOf="@+id/imageView2" />
-
-    <Button
-        android:text="Standort anzeigen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button11"
-        android:layout_alignParentBottom="true" />
-
-    <TextView
-        android:text="Campus Künzelsau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:layout_marginBottom="26dp"
-        android:layout_above="@+id/button12"
-        android:layout_toEndOf="@+id/imageView2" />
-
-    <Button
-        android:text="Route berechnen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/button14"
         android:layout_below="@+id/imageView2"
         android:layout_toEndOf="@+id/imageView2" />
@@ -157,13 +119,57 @@
         android:layout_toEndOf="@+id/imageView2" />
 
     <TextView
+        android:text="Campus Sontheim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:layout_marginBottom="23dp"
+        android:layout_above="@+id/anzeigen1"
+        android:layout_toEndOf="@+id/imageView2" />
+
+    <TextView
+        android:text="Campus Künzelsau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:layout_marginBottom="24dp"
+        android:layout_above="@+id/button12"
+        android:layout_toEndOf="@+id/imageView4" />
+
+    <TextView
+        android:text="Liste der Standorte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textStyle="normal|bold"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
         android:text="Campus Europaplatz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView6"
-        android:layout_above="@+id/berechnen1"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_marginBottom="28dp" />
+        android:layout_marginBottom="25dp"
+        android:layout_above="@+id/button14"
+        android:layout_toEndOf="@+id/imageView2" />
+
+    <Button
+        android:text="Standort anzeigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button11"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/imageView2" />
+
+    <Button
+        android:text="Route berechnen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/button11" />
 
 
 </RelativeLayout>
