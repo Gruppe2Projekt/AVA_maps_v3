@@ -152,8 +152,9 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     public void onDirectionSuccess(Direction direction, String rawBody) {
     if (direction.isOK()) {
         LatLng origin = new LatLng(breitengrad, laengengrad);
-        mMap.addMarker(new MarkerOptions().position(origin));
-        mMap.addMarker(new MarkerOptions().position(destination));
+        Marker Standort = mMap.addMarker(new MarkerOptions().position(origin).title("Dein Standort"));
+        Standort.showInfoWindow();
+        Marker HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title("HHN-Standort"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(origin, 11));
 
         ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
