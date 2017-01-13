@@ -3,5 +3,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string-array name="spinner">
+        <item>Campus Sontheim</item>
+        <item>Campus Europaplatz</item>
+        <item>Campus Schwäbisch-Hall</item>
+        <item>Campus Künzelsau</item>
+    </string-array>
 
 </resources>
