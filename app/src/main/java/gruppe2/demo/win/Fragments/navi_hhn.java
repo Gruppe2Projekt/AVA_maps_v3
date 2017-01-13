@@ -157,7 +157,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(origin, 11));
 
         ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
-        mMap.addPolyline(DirectionConverter.createPolyline(this.getContext(), directionPositionList, 5, Color.RED));
+        mMap.addPolyline(DirectionConverter.createPolyline(this.getContext(), directionPositionList, 5, Color.rgb(0,118,188)));
         }
     }
 
