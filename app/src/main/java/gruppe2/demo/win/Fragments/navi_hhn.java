@@ -38,6 +38,7 @@ import com.akexorcist.googledirection.GoogleDirection;
 import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.util.DirectionConverter;
+import com.google.android.gms.maps.model.Polyline;
 
 import java.util.ArrayList;
 
@@ -59,12 +60,10 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
     //Navigation
     String serverKey = "AIzaSyDytcF7j1kQPtIKDhRYPjcssNwoyp7yVzE";
-    LatLng destination = new LatLng(49.122635, 9.206136);
-
-    // Variablen für Spinner
-
-    Spinner spinner;
-    ArrayAdapter<CharSequence> adapter;
+    LatLng destination;
+    Marker Standort;
+    Marker HHNStandort;
+    Polyline routenavi;
 
 
     @Nullable
@@ -85,10 +84,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
                 R.array.spinner, android.R.layout.simple_spinner_item);
 
-        //adapter = ArrayAdapter.createFromResource(this,R.array.spinner,android.R.layout.simple_spinner_item );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
 
         spinner.setAdapter(adapter);
 
@@ -97,23 +93,48 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                String ziel =  parent.getItemAtPosition(position).toString();
 
-
+                if (ziel.equals("Bitte HHN-Standort auswählen")) {
+                    mMap.clear();
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.148356, 9.216501), 10));
+                }
+                else if (ziel.equals("Campus Sontheim")) {
+                    destination = new LatLng(49.122635, 9.206136);
+                    mMap.clear();
+                    requestDirection();
+                }
+                else if (ziel.equals("Campus Europaplatz")){
+                    destination = new LatLng(49.148356, 9.216501);
+                    mMap.clear();
+                    requestDirection();
+                }
+                else if (ziel.equals("Campus Schwäbisch-Hall")){
+                    destination = new LatLng(49.112501, 9.743649);
+                    mMap.clear();
+                    requestDirection();
+                }
+                else if (ziel.equals("Campus Künzelsau")){
+                    destination = new LatLng(49.275475, 9.712272);
+                    mMap.clear();
+                    requestDirection();
+                }
+                else {
+                    System.out.println("Fehler");
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-
-
     }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //LatLng marker = new LatLng(49.122102, 9.210772);
 
+        //LatLng marker = new LatLng(49.122102, 9.210772);
         //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 13));
         //LatLng SONTHEIM = new LatLng(49.122102, 9.210772);
         //googleMap.addMarker(new MarkerOptions().title("HS Heilbronn").position(SONTHEIM));
@@ -154,7 +175,6 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         laengengrad = Double.parseDouble(stringlaengengrad);
         breitengrad = Double.parseDouble(stringbreitengrad);
 
-        requestDirection();
     }
 
 
@@ -186,14 +206,17 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     public void onDirectionSuccess(Direction direction, String rawBody) {
     if (direction.isOK()) {
         LatLng origin = new LatLng(breitengrad, laengengrad);
-        Marker Standort = mMap.addMarker(new MarkerOptions().position(origin).title("Dein Standort"));
-        Standort.showInfoWindow();
-        Marker HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title("HHN-Standort"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(origin, 11));
+
+        Standort = mMap.addMarker(new MarkerOptions().position(origin).title("Dein Standort"));
+        //Standort.showInfoWindow();
+        HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title("HHN-Standort"));
+        HHNStandort.showInfoWindow();
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destination, 10));
 
         ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
-        mMap.addPolyline(DirectionConverter.createPolyline(this.getContext(), directionPositionList, 5, Color.rgb(0,118,188)));
-        }
+        routenavi = mMap.addPolyline(DirectionConverter.createPolyline(this.getContext(), directionPositionList, 5, Color.rgb(0,118,188)));
+
+    }
     }
 
     @Override
