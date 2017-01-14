@@ -21,21 +21,7 @@ import com.google.android.gms.location.LocationServices;
 import gruppe2.demo.win.Fragments.navi_hhn;
 import gruppe2.demo.win.Fragments.infos_hhn;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
-
-    //Mit Hilfe dieser können wir später die Position auslesen
-    GoogleApiClient mGoogleApiClient;
-
-    //Diese Variable beinhaltet später die Positionsdaten
-    Location mLastLocation;
-
-    //Variablen, zur Anzeige der Daten (nicht unbedingt relevant)
-    TextView l;
-    TextView b;
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
 
@@ -47,15 +33,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Aufruf der Initalisierung
-        buildGoogleApiClient();
-
-        //Definieren der Textausgabefelder
-        l = (TextView) findViewById(R.id.textLaengenGrad);
-        b = (TextView) findViewById(R.id.textBreitenGrad);
-
-        //Starten der eben initalisierten API von Google
-        mGoogleApiClient.connect();
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -88,40 +65,6 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-    //Initalisiert die API von Google, mit der wir die Position auslesen können
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-    }
-
-    //Wird aufgerufen, wenn die Verbindung zur Google API erfolgreich ist
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        //Anhand der erfolgreichen Verbindung die benötigten Daten auslesen
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-        if (mLastLocation != null) {
-            //Die ausgelesenen daten verwerten und anzeigen
-            l.setText("Längengrad: " + String.valueOf(mLastLocation.getLongitude()));
-            b.setText("Breitengrad: " + String.valueOf(mLastLocation.getLatitude()));
-        }
-    }
-
-    //Wird aufgerufen, wenn die Verbindung zur Google API aussteht
-    @Override
-    public void onConnectionSuspended(int i) {}
-
-    //Wird aufgerufen, wenn die Verbindung zur Google API fehlschlägt
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        l.setText("Längengrad: Da ist ein Fehler aufgetreten.");
-        b.setText("Breitengrad: Da ist ein Fehler aufgetreten.");
-    }
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")
