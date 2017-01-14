@@ -64,6 +64,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     Marker Standort;
     Marker HHNStandort;
     Polyline routenavi;
+    String markertitle;
 
 
     @Nullable
@@ -102,21 +103,25 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
                 else if (ziel.equals("Campus Sontheim")) {
                     destination = new LatLng(49.122635, 9.206136);
                     mMap.clear();
+                    markertitle = "Campus Sontheim";
                     requestDirection();
                 }
                 else if (ziel.equals("Campus Europaplatz")){
                     destination = new LatLng(49.148356, 9.216501);
                     mMap.clear();
+                    markertitle = "Campus Europaplatz";
                     requestDirection();
                 }
                 else if (ziel.equals("Campus Schwäbisch-Hall")){
                     destination = new LatLng(49.112501, 9.743649);
                     mMap.clear();
+                    markertitle = "Campus Schwäbisch-Hall";
                     requestDirection();
                 }
                 else if (ziel.equals("Campus Künzelsau")){
                     destination = new LatLng(49.275475, 9.712272);
                     mMap.clear();
+                    markertitle = "Campus Künzelsau";
                     requestDirection();
                 }
                 else {
@@ -209,7 +214,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
         Standort = mMap.addMarker(new MarkerOptions().position(origin).title("Dein Standort"));
         //Standort.showInfoWindow();
-        HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title("HHN-Standort"));
+        HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title(markertitle));
         HHNStandort.showInfoWindow();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destination, 10));
 
