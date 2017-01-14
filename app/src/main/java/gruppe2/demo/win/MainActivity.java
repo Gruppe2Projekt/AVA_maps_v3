@@ -46,10 +46,7 @@ public class MainActivity extends AppCompatActivity
     TextView l;
     TextView b;
 
-    // Variablen für Spinner
 
-    Spinner spinner;
-    ArrayAdapter<CharSequence> adapter;
 
 
 
@@ -85,25 +82,6 @@ public class MainActivity extends AppCompatActivity
 
 
         setContentView(R.layout.activity_main);
-
-
-        spinner = (Spinner)findViewById(R.id.spinner);
-        adapter = ArrayAdapter.createFromResource(this,R.array.spinner,android.R.layout.simple_spinner_item );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " selected", Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
 
     }
 

@@ -13,6 +13,9 @@ import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -58,6 +61,11 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     String serverKey = "AIzaSyDytcF7j1kQPtIKDhRYPjcssNwoyp7yVzE";
     LatLng destination = new LatLng(49.122635, 9.206136);
 
+    // Variablen für Spinner
+
+    Spinner spinner;
+    ArrayAdapter<CharSequence> adapter;
+
 
     @Nullable
     @Override
@@ -71,6 +79,32 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
         MapFragment fragment = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         fragment.getMapAsync(this);
+
+        Spinner spinner = (Spinner) getView().findViewById(R.id.spinner);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
+                R.array.spinner, android.R.layout.simple_spinner_item);
+
+        //adapter = ArrayAdapter.createFromResource(this,R.array.spinner,android.R.layout.simple_spinner_item );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
 
     }
 
