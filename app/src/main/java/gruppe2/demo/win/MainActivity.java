@@ -23,7 +23,10 @@ import gruppe2.demo.win.Fragments.infos_hhn;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    public class globals {
+        public String anzeigen="Noch_Leer" ;
+        public String berechnen="Noch_Leer2" ;
+    }
 
 
     @Override
