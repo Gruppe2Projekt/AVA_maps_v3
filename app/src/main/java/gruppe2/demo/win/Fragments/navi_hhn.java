@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.os.Bundle;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -65,6 +66,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     Marker HHNStandort;
     Polyline routenavi;
     String markertitle;
+
 
 
     @Nullable

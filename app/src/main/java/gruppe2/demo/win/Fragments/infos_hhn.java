@@ -3,6 +3,7 @@ package gruppe2.demo.win.Fragments;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.Button;
 
 import gruppe2.demo.win.MainActivity;
 import gruppe2.demo.win.R;
+
+import static android.R.attr.key;
 
 public class infos_hhn extends Fragment {
 
@@ -38,9 +41,18 @@ public class infos_hhn extends Fragment {
         {
             @Override
             public void onClick(View v) {
+                navi_hhn f =new navi_hhn();
 
-                //Hier variable setzen in Mainactivity
-                fm.beginTransaction().replace(R.id.content_frame, new navi_hhn()).commit();
+
+                String file = "a_1";
+                String KEY_FILE="file";
+                Bundle args=new Bundle();
+                args.putString(KEY_FILE,file);
+                f.setArguments(args);
+
+
+
+                fm.beginTransaction().replace(R.id.content_frame, f).commit();
             }
         });
 
