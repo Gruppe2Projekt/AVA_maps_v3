@@ -95,10 +95,13 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 String ziel =  parent.getItemAtPosition(position).toString();
+                LatLng standort = new LatLng(breitengrad, laengengrad);
 
                 if (ziel.equals("Bitte HHN-Standort auswählen")) {
                     mMap.clear();
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.148356, 9.216501), 10));
+                    Marker aktuellerstandort = mMap.addMarker(new MarkerOptions().position(standort).title("Dein Standort"));
+                    aktuellerstandort.showInfoWindow();
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(standort, 10));
                 }
                 else if (ziel.equals("Campus Sontheim")) {
                     destination = new LatLng(49.122635, 9.206136);
@@ -146,6 +149,8 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
         mMap.setMyLocationEnabled(true);
         standortbestimmung();
+
+
     }
 
 
@@ -179,6 +184,13 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         String stringbreitengrad = String.valueOf(mLastLocation.getLatitude());
         laengengrad = Double.parseDouble(stringlaengengrad);
         breitengrad = Double.parseDouble(stringbreitengrad);
+
+        //Pin für den aktuellen Standort beim erstmaligen Starten
+        LatLng standort = new LatLng(breitengrad, laengengrad);
+        mMap.clear();
+        Marker aktuellerstandort = mMap.addMarker(new MarkerOptions().position(standort).title("Dein Standort"));
+        aktuellerstandort.showInfoWindow();
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(standort, 10));
 
     }
 
