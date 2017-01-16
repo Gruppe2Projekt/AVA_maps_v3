@@ -25,7 +25,7 @@
         android:layout_toEndOf="@+id/button7" />
 
     <TextView
-        android:text="Campus Schwäbisch Hall: Ziegeleiweg 4, 74523 Schwäbisch Hall"
+        android:text="Campus Schwäbisch Hall: Ziegeleiweg 4      74523 Schwäbisch Hall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
@@ -138,7 +138,7 @@
         android:layout_marginTop="21dp" />
 
     <TextView
-        android:text="Campus Künzelsau: Daimlerstraße 35, 74653 Künzelsau"
+        android:text="Campus Künzelsau: Daimlerstraße 35         74653 Künzelsau"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
@@ -157,7 +157,7 @@
         android:layout_marginTop="15dp" />
 
     <TextView
-        android:text="Campus Sontheim: Max-Planck-Straße 39, 74081 Heilbronn"
+        android:text="Campus Sontheim: Max-Planck-Straße 39        74081 Heilbronn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
