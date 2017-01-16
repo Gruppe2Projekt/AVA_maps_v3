@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/infos_hhn" android:icon="@android:drawable/ic_dialog_info"
-            android:title="Infos zur Hochschule" />
+            android:title="HHN Standorte" />
         <item android:id="@+id/navi_hhn" android:icon="@android:drawable/ic_dialog_map"
             android:title="Navigation zur Hochschule" />
     </group>
