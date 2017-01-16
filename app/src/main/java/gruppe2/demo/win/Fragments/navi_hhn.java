@@ -88,7 +88,6 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         LocationManager locationManager = (LocationManager) this.getContext().getSystemService(LOCATION_SERVICE);
 
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            Toast.makeText(getContext(), "Standortbestimmung ist aktiviert", Toast.LENGTH_LONG).show();
 
             obgpsan = true;
 
