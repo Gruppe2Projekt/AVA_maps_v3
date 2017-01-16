@@ -36,7 +36,7 @@
             map:uiCompass="true"
             map:uiRotateGestures="true"
             map:uiScrollGestures="true"
-            map:uiTiltGestures="false"
+            map:uiTiltGestures="true"
             map:uiZoomControls="true"
             map:uiZoomGestures="true" />
 
