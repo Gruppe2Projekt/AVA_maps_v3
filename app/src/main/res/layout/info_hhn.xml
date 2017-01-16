@@ -107,15 +107,6 @@
         android:layout_marginTop="18dp"
         android:layout_toStartOf="@+id/button4" />
 
-    <Button
-        android:text="Standort anzeigen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/berechnen1"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="75sp"
@@ -170,6 +161,15 @@
         android:layout_alignBottom="@+id/imageView3"
         android:layout_alignEnd="@+id/textView8"
         android:layout_marginBottom="24dp" />
+
+    <Button
+        android:text="Standort anzeigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/berechnen1"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
