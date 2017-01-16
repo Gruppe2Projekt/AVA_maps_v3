@@ -37,6 +37,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -336,7 +337,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
         Standort = mMap.addMarker(new MarkerOptions().position(origin).title("Dein Standort"));
         //Standort.showInfoWindow();
-        HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title(markertitle));
+        HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title(markertitle).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
         HHNStandort.showInfoWindow();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destination, 13));
 
