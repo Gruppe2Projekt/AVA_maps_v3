@@ -199,9 +199,9 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
             if (nachricht.equals(1)) {
                 mMap.clear();
-                Marker europaplatz = mMap.addMarker(new MarkerOptions().position(new LatLng(49.148356, 9.216501)).title("Campus Europaplatz"));
+                Marker europaplatz = mMap.addMarker(new MarkerOptions().position(new LatLng(49.148356, 9.216501)).title("Campus Europaplatz").snippet("Am Europaplatz 11,74076 Heilbronn"));
                 europaplatz.showInfoWindow();
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.148356, 9.216501), 10));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.148356, 9.216501), 14));
             }
             else if (nachricht.equals(2)) {
                 destination = new LatLng(49.148356, 9.216501);
@@ -211,7 +211,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
             }
             else if (nachricht.equals(3)) {
                 mMap.clear();
-                Marker Sontheim = mMap.addMarker(new MarkerOptions().position(new LatLng(49.122235, 9.211491)).title("Campus Sontheim"));
+                Marker Sontheim = mMap.addMarker(new MarkerOptions().position(new LatLng(49.122235, 9.211491)).title("Campus Sontheim").snippet("Max-Planck-Straße 39, 74081 Heilbronn"));
                 Sontheim.showInfoWindow();
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.122235, 9.211491), 14));
             }
@@ -223,9 +223,9 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
             }
             else if (nachricht.equals(5)) {
                 mMap.clear();
-                Marker kuenzelsau = mMap.addMarker(new MarkerOptions().position(new LatLng(49.275475, 9.712272)).title("Campus Künzelsau"));
+                Marker kuenzelsau = mMap.addMarker(new MarkerOptions().position(new LatLng(49.275475, 9.712272)).title("Campus Künzelsau").snippet("Daimlerstraße 35, 74653 Künzelsau"));
                 kuenzelsau.showInfoWindow();
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.275475, 9.712272), 10));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.275475, 9.712272), 14));
             }
             else if (nachricht.equals(6)) {
                 destination = new LatLng(49.275475, 9.712272);
@@ -236,9 +236,9 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
             }
             else if (nachricht.equals(7)) {
                 mMap.clear();
-                Marker schwaebischhall = mMap.addMarker(new MarkerOptions().position(new LatLng(49.112501, 9.743649)).title("Campus Schwäbisch-Hall"));
+                Marker schwaebischhall = mMap.addMarker(new MarkerOptions().position(new LatLng(49.112501, 9.743649)).title("Campus Schwäbisch-Hall").snippet("Ziegeleiweg 4, 74523 Schwäbisch Hall"));
                 schwaebischhall.showInfoWindow();
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.112501, 9.743649), 10));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.112501, 9.743649), 14));
             }
             else if (nachricht.equals(8)) {
                 destination = new LatLng(49.112501, 9.743649);
@@ -289,7 +289,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         //Standort.showInfoWindow();
         HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title(markertitle));
         HHNStandort.showInfoWindow();
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destination, 10));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destination, 13));
 
         ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
         routenavi = mMap.addPolyline(DirectionConverter.createPolyline(this.getContext(), directionPositionList, 5, Color.rgb(0,118,188)));
