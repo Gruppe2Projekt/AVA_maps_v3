@@ -14,7 +14,8 @@
         android:id="@+id/spinner"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        app:actionLayout="@layout/support_simple_spinner_dropdown_item"/>
+        app:actionLayout="@layout/support_simple_spinner_dropdown_item"
+        android:spinnerMode="dialog" />
 
     <FrameLayout
         android:layout_width="match_parent"

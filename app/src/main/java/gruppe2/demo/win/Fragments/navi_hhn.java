@@ -30,9 +30,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
@@ -106,7 +103,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(standort, 10));
                 }
                 else if (ziel.equals("Campus Sontheim")) {
-                    destination = new LatLng(49.122635, 9.206136);
+                    destination = new LatLng(49.122235, 9.211491);
                     mMap.clear();
                     markertitle = "Campus Sontheim";
                     requestDirection();
@@ -137,6 +134,8 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+
+
     }
 
 
@@ -154,7 +153,6 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
 
     }
-
 
 
     public void standortbestimmung() {
@@ -194,6 +192,68 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         aktuellerstandort.showInfoWindow();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(standort, 10));
 
+        //Wenn Buttons in Info_hhn gedrückt werden, wird dies ausgeführt je nach Button
+        Bundle args = this.getArguments();
+        if (args != null) {
+            Integer nachricht = args.getInt("schluessel");
+
+            if (nachricht.equals(1)) {
+                mMap.clear();
+                Marker europaplatz = mMap.addMarker(new MarkerOptions().position(new LatLng(49.148356, 9.216501)).title("Campus Europaplatz"));
+                europaplatz.showInfoWindow();
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.148356, 9.216501), 10));
+            }
+            else if (nachricht.equals(2)) {
+                destination = new LatLng(49.148356, 9.216501);
+                mMap.clear();
+                markertitle = "Campus Europaplatz";
+                requestDirection();
+            }
+            else if (nachricht.equals(3)) {
+                mMap.clear();
+                Marker Sontheim = mMap.addMarker(new MarkerOptions().position(new LatLng(49.122235, 9.211491)).title("Campus Sontheim"));
+                Sontheim.showInfoWindow();
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.122235, 9.211491), 14));
+            }
+            else if (nachricht.equals(4)) {
+                destination = new LatLng(49.122235, 9.211491);
+                mMap.clear();
+                markertitle = "Campus Sontheim";
+                requestDirection();
+            }
+            else if (nachricht.equals(5)) {
+                mMap.clear();
+                Marker kuenzelsau = mMap.addMarker(new MarkerOptions().position(new LatLng(49.275475, 9.712272)).title("Campus Künzelsau"));
+                kuenzelsau.showInfoWindow();
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.275475, 9.712272), 10));
+            }
+            else if (nachricht.equals(6)) {
+                destination = new LatLng(49.275475, 9.712272);
+                mMap.clear();
+                markertitle = "Campus Künzelsau";
+                requestDirection();
+
+            }
+            else if (nachricht.equals(7)) {
+                mMap.clear();
+                Marker schwaebischhall = mMap.addMarker(new MarkerOptions().position(new LatLng(49.112501, 9.743649)).title("Campus Schwäbisch-Hall"));
+                schwaebischhall.showInfoWindow();
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(49.112501, 9.743649), 10));
+            }
+            else if (nachricht.equals(8)) {
+                destination = new LatLng(49.112501, 9.743649);
+                mMap.clear();
+                markertitle = "Campus Schwäbisch-Hall";
+                requestDirection();
+            }
+            else {
+                System.out.println("Fehler bei der Datenübergabe");
+            }
+
+        } else {
+            System.out.println("Keine daten vorhanden");
+        }
+
     }
 
 
@@ -205,8 +265,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     //Wird aufgerufen, wenn die Verbindung zur Google API fehlschlägt
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        //l.setText("Längengrad: Da ist ein Fehler aufgetreten.");
-        //b.setText("Breitengrad: Da ist ein Fehler aufgetreten.");
+
     }
 
 
