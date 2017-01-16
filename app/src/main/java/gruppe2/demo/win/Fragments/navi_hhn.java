@@ -100,7 +100,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
                     mMap.clear();
                     Marker aktuellerstandort = mMap.addMarker(new MarkerOptions().position(standort).title("Dein Standort"));
                     aktuellerstandort.showInfoWindow();
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(standort, 10));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(standort, 14));
                 }
                 else if (ziel.equals("Campus Sontheim")) {
                     destination = new LatLng(49.122235, 9.211491);
