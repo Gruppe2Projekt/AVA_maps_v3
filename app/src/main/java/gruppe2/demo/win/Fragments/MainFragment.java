@@ -1,3 +1,9 @@
+/*
+App erstellt durch Gruppe 2
+Alexander Brechlin - 191898
+Vitalij Degraf - 191904
+Adrian Grünther - 191908
+ */
 package gruppe2.demo.win.Fragments;
 
 import android.app.Fragment;

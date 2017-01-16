@@ -1,15 +1,25 @@
+/*
+App erstellt durch Gruppe 2
+Alexander Brechlin - 191898
+Vitalij Degraf - 191904
+Adrian Grünther - 191908
+ */
 package gruppe2.demo.win.Fragments;
 
 import android.Manifest;
 import android.content.Context;
 import android.app.Fragment;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -42,6 +53,8 @@ import java.util.ArrayList;
 
 import gruppe2.demo.win.R;
 
+import static android.content.Context.LOCATION_SERVICE;
+
 
 public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -64,11 +77,26 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     Polyline routenavi;
     String markertitle;
 
+    //Variable zur Abfrage ob das GPS an ist
+    Boolean obgpsan;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        LocationManager locationManager = (LocationManager) this.getContext().getSystemService(LOCATION_SERVICE);
+
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            Toast.makeText(getContext(), "Standortbestimmung ist aktiviert", Toast.LENGTH_LONG).show();
+
+            obgpsan = true;
+
+        }else{
+            showGPSDisabledAlertToUser();
+            obgpsan = false;
+        }
+
         return inflater.inflate(R.layout.fragment_gmaps, container, false);
     }
 
@@ -134,24 +162,15 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-
-
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        //LatLng marker = new LatLng(49.122102, 9.210772);
-        //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 13));
-        //LatLng SONTHEIM = new LatLng(49.122102, 9.210772);
-        //googleMap.addMarker(new MarkerOptions().title("HS Heilbronn").position(SONTHEIM));
-
         mMap.setMyLocationEnabled(true);
+
         standortbestimmung();
-
-
     }
 
 
@@ -173,17 +192,50 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
                 .build();
     }
 
+    private void showGPSDisabledAlertToUser(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("Zur Nutzung dieser App ist die Standortbestimmung notwendig. Du kannst diese in den Einstellungen einschalten.")
+                .setCancelable(false)
+                .setPositiveButton("Zu den Standorteinstellungen",
+                        new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int id){
+                                Intent callGPSSettingIntent = new Intent(
+                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+                                System.exit(0);
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("Abbrechen und App beenden",
+                new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                        System.exit(0);
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
 
     //Wird aufgerufen, wenn die Verbindung zur Google API erfolgreich ist
     @Override
     public void onConnected(Bundle connectionHint) {
         //Anhand der erfolgreichen Verbindung die benötigten Daten auslesen
+
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-        String stringlaengengrad = String.valueOf(mLastLocation.getLongitude());
-        String stringbreitengrad = String.valueOf(mLastLocation.getLatitude());
-        laengengrad = Double.parseDouble(stringlaengengrad);
-        breitengrad = Double.parseDouble(stringbreitengrad);
+            if (obgpsan.equals(true)) {
+
+                String stringlaengengrad = String.valueOf(mLastLocation.getLongitude());
+                String stringbreitengrad = String.valueOf(mLastLocation.getLatitude());
+                laengengrad = Double.parseDouble(stringlaengengrad);
+                breitengrad = Double.parseDouble(stringbreitengrad);
+
+            }else{
+                Toast.makeText(getContext(), "Standortbestimmung ist notwendig, bitte anmachen", Toast.LENGTH_LONG).show();
+
+
+            }
+
 
         //Pin für den aktuellen Standort beim erstmaligen Starten
         LatLng standort = new LatLng(breitengrad, laengengrad);
@@ -257,7 +309,6 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     }
 
 
-
     //Wird aufgerufen, wenn die Verbindung zur Google API aussteht
     @Override
     public void onConnectionSuspended(int i) {}
@@ -267,7 +318,6 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
-
 
 
     public void requestDirection() {
