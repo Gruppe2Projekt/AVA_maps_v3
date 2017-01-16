@@ -8,11 +8,5 @@
             android:title="Navigation zur Hochschule" />
     </group>
 
-    <group android:visible="true">
-        <item>
-
-        </item>
-    </group>
-
 
 </menu>
