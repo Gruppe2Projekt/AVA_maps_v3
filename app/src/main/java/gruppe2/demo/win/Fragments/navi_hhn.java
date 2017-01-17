@@ -6,19 +6,14 @@ Adrian Grünther - 191908
  */
 package gruppe2.demo.win.Fragments;
 
-import android.Manifest;
-import android.content.Context;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +21,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -87,8 +80,8 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        //Es wird geprüft ob das GPS an ist. Wenn GPS an ist wird "opgpsan" auf true gesetzt
         LocationManager locationManager = (LocationManager) this.getContext().getSystemService(LOCATION_SERVICE);
-
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
 
             obgpsan = true;
@@ -108,6 +101,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
         MapFragment fragment = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         fragment.getMapAsync(this);
 
+        //Spinner wird erstellt für die Auswahl der Navi-Standorte
         Spinner spinner = (Spinner) getView().findViewById(R.id.spinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
@@ -124,6 +118,8 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
                 String ziel =  parent.getItemAtPosition(position).toString();
                 LatLng standort = new LatLng(breitengrad, laengengrad);
+
+                //Je nach Auswahl im Spinner wird eine andere Route navigiert
 
                 if (ziel.equals("Bitte HHN-Standort auswählen")) {
                     mMap.clear();
@@ -173,8 +169,10 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //Aktiviert Maps eigene Standortbestimmung
         mMap.setMyLocationEnabled(true);
 
+        //Ruft die eigene Standortbestimmung auf für die Routennavigation
         standortbestimmung();
     }
 
@@ -197,6 +195,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
                 .build();
     }
 
+    //Falls GPS nicht an ist poppt Fenster auf und verweist auf die Einstellungen
     private void showGPSDisabledAlertToUser(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Zur Nutzung dieser App ist die Standortbestimmung notwendig. Du kannst diese in den Einstellungen einschalten.")
@@ -328,7 +327,7 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
 
     }
 
-
+    //Funktion zur Routenberechnung
     public void requestDirection() {
         LatLng origin = new LatLng(breitengrad, laengengrad);
         GoogleDirection.withServerKey(serverKey)
@@ -338,24 +337,27 @@ public class navi_hhn extends Fragment implements OnMapReadyCallback, DirectionC
                 .execute(this);
 
     }
-
+    //Falls Routenberechnung geglückt ist wird dies aufgerufen
     @Override
     public void onDirectionSuccess(Direction direction, String rawBody) {
     if (direction.isOK()) {
         LatLng origin = new LatLng(breitengrad, laengengrad);
 
+        //Setzt Marker am Standort und am Ziel
         Standort = mMap.addMarker(new MarkerOptions().position(origin).title("Dein Standort"));
         //Standort.showInfoWindow();
         HHNStandort = mMap.addMarker(new MarkerOptions().position(destination).title(markertitle).snippet(beschreibung).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
         HHNStandort.showInfoWindow();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destination, 13));
 
+        //Zeichnet die Route
         ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
         routenavi = mMap.addPolyline(DirectionConverter.createPolyline(this.getContext(), directionPositionList, 5, Color.rgb(0,118,188)));
 
     }
     }
 
+    //Wird aufgerufen falls Routenberechnung nicht funktioniert hat
     @Override
     public void onDirectionFailure(Throwable t) {
         System.out.println("Fehler bei der Routenberechnung");

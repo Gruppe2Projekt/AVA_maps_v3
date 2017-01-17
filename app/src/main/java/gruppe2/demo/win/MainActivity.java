@@ -8,7 +8,6 @@ Adrian Grünther - 191908
 package gruppe2.demo.win;
 
 import android.app.FragmentManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,11 +18,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.widget.TextView;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 
 import gruppe2.demo.win.Fragments.navi_hhn;
 import gruppe2.demo.win.Fragments.infos_hhn;

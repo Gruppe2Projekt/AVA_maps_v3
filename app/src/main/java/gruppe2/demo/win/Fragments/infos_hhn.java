@@ -4,20 +4,19 @@ Alexander Brechlin - 191898
 Vitalij Degraf - 191904
 Adrian Grünther - 191908
  */
+
+//Fragment zur Dartsellung der HHN-Standorte mitsamt Button für den Pin und Button für Routenberechnung
 package gruppe2.demo.win.Fragments;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 
-import gruppe2.demo.win.MainActivity;
 import gruppe2.demo.win.R;
 
 
@@ -30,7 +29,7 @@ public class infos_hhn extends Fragment {
 
 
     }
-
+//Hier werden die Buttons erstellt und bei klick darauf eine Varibale an das Fragment navi_hhn übergeben.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
@@ -41,6 +40,7 @@ public class infos_hhn extends Fragment {
         markerEuropaplatz.setOnClickListener(new View.OnClickListener()
 
         {
+            //Bei Klick wird ein Bunlde erstellt und an navi_hhn übergeben
             @Override
             public void onClick(View v) {
 
